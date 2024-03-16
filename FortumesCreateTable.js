@@ -1,7 +1,7 @@
 var AWS = require("aws-sdk");
 
 AWS.config.update({
-  region: "us-west-2",
+  region: "us-east-1",
   endpoint: "http://localhost:8000"
 });
 
@@ -16,8 +16,8 @@ var params = {
         { AttributeName: "fortuneID", AttributeType: "N" },
     ],
     ProvisionedThroughput: {       
-        ReadCapacityUnits: 10, 
-        WriteCapacityUnits: 10
+        ReadCapacityUnits: 1, 
+        WriteCapacityUnits: 1
     }
 };
 
