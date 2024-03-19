@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -12,8 +13,8 @@ var randnum = require('random-number-between');
 AWS.config.update({
   region: "us-east-1",
   endpoint: "https://dynamodb.us-east-1.amazonaws.com",
-  accessKeyId: "",
-  secretAccessKey: ""
+  accessKeyId: process.env.accessKeyId,
+  secretAccessKey: process.env.secretAccessKey
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
