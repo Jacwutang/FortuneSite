@@ -11,11 +11,19 @@ var AWS = require("aws-sdk");
 var randnum = require('random-number-between');
 
 AWS.config.update({
-  region: "us-east-1",
-  endpoint: "https://dynamodb.us-east-1.amazonaws.com",
-  accessKeyId: process.env.accessKeyId,
-  secretAccessKey: process.env.secretAccessKey
+    region: "us-east-1"
 });
+
+if (process.env.AWS_EC2 == 'true') {
+    // Use IAM role on EC2 instance
+    console.log('Using IAM role for credentials.');
+} else {
+    AWS.config.update({
+        accessKeyId: process.env.accessKeyId,
+        secretAccessKey: process.env.secretAccessKey    
+    });
+}
+
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 var svc = new AWS.DynamoDB();
